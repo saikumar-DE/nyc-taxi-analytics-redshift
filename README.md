@@ -1,1 +1,1 @@
-# nyc-taxi-analytics-redshift
+# nyctaxi-analytics-redshift
