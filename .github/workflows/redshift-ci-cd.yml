@@ -1,0 +1,27 @@
+name: Redshift SQL CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-redshift-sql:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate SQL folders
+        run: |
+          test -d sql/00_setup
+          test -d sql/01_stage
+          test -d sql/02_dimensions
+          test -d sql/03_fact
+          test -d sql/04_analytics
+          echo "SQL folder structure validated"
+
+      - name: List SQL files (deployment order)
+        run: |
+          ls -R sql/
